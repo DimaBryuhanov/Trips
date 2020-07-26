@@ -36,7 +36,7 @@ namespace Trips.Controllers
             return Ok();
         }
 
-        [HttpPut("UpdateTrip/{id}")]
+        [HttpPut("updateTrip/{id}")]
         public IActionResult UpdateTrip(int id, [FromBody] Trip trip)
         {
             _service.UpdateTrip(id, trip);
