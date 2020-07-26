@@ -1,16 +1,27 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
-export class Trips extends Component
-{
-    constructor (props){
+export class Trips extends Component {
+    constructor(props) {
         super(props);
         this.state = {
             trips: [],
-            loading: false
+            loading: true
         }
     }
 
-    renderAllTripsTable(trips){
+    componentDidMount() {
+        this.populateTripsData();
+    }
+
+    populateTripsData() {
+        axios.get("api/Trips/GetTrips").then(result => {
+            const response = result.data;
+            this.setState({ trips: response, loading: false });
+        })
+    }
+
+    renderAllTripsTable(trips) {
         return (
             <table className="table table-striped">
                 <thead>
@@ -23,34 +34,32 @@ export class Trips extends Component
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>a</td>
-                        <td>a</td>
-                        <td>a</td>
-                        <td>a</td>
-                        <td>-</td>
-                    </tr>
-                    <tr>
-                        <td>a</td>
-                        <td>a</td>
-                        <td>a</td>
-                        <td>a</td>
-                        <td>-</td>
-                    </tr>
+                    {
+                        trips.map(trip => (
+                            <tr key={trip.id}>
+                                <td>{trip.name}</td>
+                                <td>{trip.description}</td>
+                                <td>{trip.dateStarted}</td>
+                                <td>{trip.dateCompleted}</td>
+                                <td>-</td>
+                            </tr>
+                        ))
+                    }
+
                 </tbody>
             </table>
         );
     }
 
-    render () {
+    render() {
 
         let content = this.state.loading ? (
             <p>
                 <em>Loading...</em>
             </p>
         ) : (
-            this.renderAllTripsTable(this.state.trips)
-        );
+                this.renderAllTripsTable(this.state.trips)
+            );
 
         return (
             <div>
