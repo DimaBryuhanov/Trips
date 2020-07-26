@@ -6,8 +6,8 @@ namespace Trips.Data
     {
         List<Trip> GetAllTrips();
         Trip GetTripById(int tripId);
-        void Updatetrip(int tripId, Trip trip);
-        void Deletetrip(int tripId);
+        void UpdateTrip(int tripId, Trip trip);
+        void DeleteTrip(int tripId);
         void AddTrip(Trip trip);
     }
 }

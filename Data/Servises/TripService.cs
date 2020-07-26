@@ -3,41 +3,41 @@ using System.Linq;
 
 namespace Trips.Data
 {
-    class TripService : ITripService
+    public class TripService : ITripService
     {
         public void AddTrip(Trip trip)
         {
             Data.Trips.Add(trip);
         }
 
-        public void Deletetrip(int tripId)
+        public void DeleteTrip(int tripId)
         {
-            var OldTrip = Data.Trips.FirstOrDefault(n => n.Id == tripId);
-            if (OldTrip != null)
+            var trip = Data.Trips.FirstOrDefault(n => n.Id == tripId);
+            if(trip != null)
             {
-                Data.Trips.Remove(OldTrip);
+                Data.Trips.Remove(trip);
             }
         }
 
-        public List<Trip> GetAllTrips()
+        public void Deletetrip(int tripId)
         {
-            return Data.Trips.ToList();
+            throw new System.NotImplementedException();
         }
 
-        public Trip GetTripById(int tripId)
-        {
-            return Data.Trips.FirstOrDefault(n => n.Id == tripId);
-        }
+        public List<Trip> GetAllTrips() => Data.Trips.ToList();
 
-        public void Updatetrip(int tripId, Trip trip)
+        public Trip GetTripById(int tripId) => Data.Trips.FirstOrDefault(n => n.Id == tripId);
+
+        public void UpdateTrip(int tripId, Trip trip)
         {
-            var OldTrip = Data.Trips.FirstOrDefault(n => n.Id == trip.Id);
-            if (OldTrip != null)
+            var oldTrip = Data.Trips.FirstOrDefault(n => n.Id == tripId);
+
+            if(oldTrip != null)
             {
-                OldTrip.Name            = trip.Name;
-                OldTrip.Description     = trip.Description;
-                OldTrip.DateStarted     = trip.DateStarted;
-                OldTrip.DateCompleted   = trip.DateCompleted;
+                oldTrip.Name = trip.Name;
+                oldTrip.Description = trip.Description;
+                oldTrip.DateStarted = trip.DateStarted;
+                oldTrip.DateCompleted = trip.DateCompleted;
             }
         }
     }

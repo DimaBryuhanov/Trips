@@ -12,17 +12,17 @@ namespace Trips.Controllers
             this._service = service;
         }
 
-        [HttpGet("SingleTrip/{id")]
+        [HttpGet("SingleTrip/{id}")]
         public IActionResult SingleTrip(int id)
         {
-            var trip = this._service.GetTripById(id);
+            var trip = _service.GetTripById(id);
             return Ok(trip);
         }
 
         [HttpGet("[action]")]
         public IActionResult GetTrips()
         {
-            var AllTrips = this._service.GetAllTrips();
+            var AllTrips = _service.GetAllTrips();
             return Ok(AllTrips);
         }
 
@@ -31,7 +31,7 @@ namespace Trips.Controllers
         {
             if(trip != null)
             {
-                this._service.AddTrip(trip);
+                _service.AddTrip(trip);
             }
             return Ok();
         }
@@ -39,14 +39,14 @@ namespace Trips.Controllers
         [HttpPut("UpdateTrip/{id}")]
         public IActionResult UpdateTrip(int id, [FromBody] Trip trip)
         {
-            this._service.Updatetrip(id, trip);
+            _service.UpdateTrip(id, trip);
             return Ok(trip);
         }
 
         [HttpDelete("DeleteTrip/id")]
         public IActionResult DeleteTrip(int id)
         {
-            this._service.Deletetrip(id);
+            this._service.DeleteTrip(id);
             return Ok();
         }
     }
