@@ -43,10 +43,10 @@ namespace Trips.Controllers
             return Ok(trip);
         }
 
-        [HttpDelete("DeleteTrip/id")]
+        [HttpDelete("DeleteTrip/{id}")]
         public IActionResult DeleteTrip(int id)
         {
-            this._service.DeleteTrip(id);
+            _service.DeleteTrip(id);
             return Ok();
         }
     }

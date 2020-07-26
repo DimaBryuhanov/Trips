@@ -21,7 +21,11 @@ namespace Trips.Data
 
         public void Deletetrip(int tripId)
         {
-            throw new System.NotImplementedException();
+            var trip = Data.Trips.FirstOrDefault(n => n.Id == tripId);
+            if(trip != null)
+            {
+                Data.Trips.Remove(trip);
+            }
         }
 
         public List<Trip> GetAllTrips() => Data.Trips.ToList();
