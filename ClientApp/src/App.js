@@ -7,7 +7,7 @@ import { Update } from './components/Trip/Update';
 import {Delete } from './components/Trip/Delete';
 
 import './custom.css'
-import { Trips } from './components/Trip/Trips';
+import Trips  from './components/Trip/Trips';
 
 export default class App extends Component {
   static displayName = App.name;
