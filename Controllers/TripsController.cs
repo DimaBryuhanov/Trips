@@ -1,3 +1,4 @@
+using System;
 using Microsoft.AspNetCore.Mvc;
 using Trips.Data;
 
@@ -22,14 +23,23 @@ namespace Trips.Controllers
         [HttpGet("[action]")]
         public IActionResult GetTrips()
         {
-            var AllTrips = _service.GetAllTrips();
-            return Ok(AllTrips);
+            try
+            {
+                var AllTrips = _service.GetAllTrips();
+                return Ok(AllTrips);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+
         }
 
         [HttpPost("AddTrip")]
         public IActionResult AddTrip([FromBody] Trip trip)
         {
-            if(trip != null)
+            if (trip != null)
             {
                 _service.AddTrip(trip);
             }
